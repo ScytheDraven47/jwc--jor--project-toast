@@ -1,22 +1,8 @@
 import React from "react";
 
+import useEscapeKey from "../../hooks/use-escape-key";
+
 export const ToastContext = React.createContext();
-
-export function useEscapeKey(callback) {
-  React.useEffect(() => {
-    function handleKeyUp(event) {
-      if (event.code === "Escape") {
-        callback(event);
-      }
-    }
-
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [callback]);
-}
 
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
