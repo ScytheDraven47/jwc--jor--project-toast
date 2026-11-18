@@ -5,6 +5,17 @@ export const ToastContext = React.createContext();
 function ToastProvider({ children }) {
   const [toasts, setToasts] = React.useState([]);
 
+  React.useEffect(() => {
+    function handleEsc(event) {
+      if (event.code === "Escape") setToasts([]);
+    }
+
+    window.addEventListener("keyup", handleEsc);
+    return () => {
+      window.removeEventListener("keyup", handleEsc);
+    };
+  }, [setToasts]);
+
   function createToast({ variant, message }) {
     const id = Date.now() + Math.random();
     const newToast = { id, message, variant };
