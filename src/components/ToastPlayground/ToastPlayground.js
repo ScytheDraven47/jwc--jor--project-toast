@@ -14,7 +14,7 @@ const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 function ToastPlayground() {
   const [message, setMessage] = React.useState("");
   const [variant, setVariant] = React.useState("notice");
-  const { toasts, createToast } = React.useContext(ToastContext);
+  const { createToast } = React.useContext(ToastContext);
 
   function handlePop(event) {
     event.preventDefault();
@@ -30,7 +30,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      <ToastShelf toasts={toasts} />
+      <ToastShelf />
 
       <form onSubmit={handlePop} className={styles.controlsWrapper}>
         <div className={styles.row}>
